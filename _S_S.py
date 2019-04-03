@@ -31,7 +31,7 @@ def shift(line):
 try:
   if len(sys.argv) < 2 or len(sys.argv) > 3:
     raise("Invalid Arguments.")
-  ass = re.sub("\\r\\n", "\\n", open(sys.argv[1], 'rb').read().decode())
+  ass = re.sub("\r\n", "\n", open(sys.argv[1], 'rb').read().decode())
   if len(sys.argv) == 2:
     offset = int(input("Please input offset in ms: "))
   else:
