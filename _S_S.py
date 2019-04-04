@@ -40,8 +40,8 @@ try:
   for x in range(0, len(lines)):
     if re.search("^Dialogue:", lines[x]):
       lines[x] = shift(lines[x])
-  os.rename(sys.argv[1], sys.argv[1]+".bak")
-  open(sys.argv[1], 'wb').write(("\n".join(lines)).encode())
+  #os.rename(sys.argv[1], sys.argv[1]+".bak")
+  open(sys.argv[1], 'wb').write(b"\xef\xbb\xbf"+("\n".join(lines)).encode())
 except:
   traceback.print_exc()
   input()
