@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import chardet
 import traceback
 def shift(line):
   global offset
@@ -31,7 +32,8 @@ def shift(line):
 try:
   if len(sys.argv) < 2 or len(sys.argv) > 3:
     raise("Invalid Arguments.")
-  ass = re.sub("\r\n", "\n", open(sys.argv[1], 'rb').read().decode())
+  enc = chardet.detect(open(sys.argv[1], 'rb').read())['encoding']
+  ass = re.sub("\r\n", "\n", open(sys.argv[1], 'rb').read().decode(enc))
   if len(sys.argv) == 2:
     offset = int(input("Please input offset in ms: "))
   else:
